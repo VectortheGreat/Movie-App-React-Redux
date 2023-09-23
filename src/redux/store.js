@@ -4,7 +4,7 @@ import modalSlice from "./modalSlice";
 
 export const store = configureStore({
   reducer: {
-    produce: productSlice,
+    product: productSlice,
     modal: modalSlice,
   },
 });

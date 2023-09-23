@@ -6,13 +6,12 @@ import { createProductFunc } from "../../redux/productSlice";
 
 const Modal = () => {
   const dispatch = useDispatch();
-  //   const { product } = useSelector((state) => state.product);
-  const product = useSelector((state) => state.product || []);
+  const { product } = useSelector((state) => state.product || []);
   const [movieInfo, setMovieInfo] = useState({
     name: "",
     category: "",
     description: "",
-    img: "",
+    url: "",
     director: "",
   });
   const onchangeFunc = (e, type) => {
@@ -26,10 +25,12 @@ const Modal = () => {
     }
   };
   const buttonFunc = () => {
+
     dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
+
     dispatch(modalFunc());
   };
-  console.log(product);
+  // console.log(movieInfo);
 
   return (
     <>
@@ -81,12 +82,11 @@ const Modal = () => {
           />
           <input
             className="h-10 w-full border rounded-md p-2 outline-none mt-3"
-            value={movieInfo.img}
             type="file"
             placeholder="Image"
-            name="img"
-            id="img"
-            onChange={(e) => onchangeFunc(e, "img")}
+            name="url"
+            id="url"
+            onChange={(e) => onchangeFunc(e, "url")}
           />
 
           <button
