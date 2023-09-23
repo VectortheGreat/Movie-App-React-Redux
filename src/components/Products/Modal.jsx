@@ -13,6 +13,10 @@ const Modal = () => {
     description: "",
     url: "",
     director: "",
+    imdbRating: "",
+    date: "",
+    duration: "",
+    trailerUrl: ""
   });
   const onchangeFunc = (e, type) => {
     if (type == "url") {
@@ -25,12 +29,9 @@ const Modal = () => {
     }
   };
   const buttonFunc = () => {
-
     dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
-
     dispatch(modalFunc());
   };
-  // console.log(movieInfo);
 
   return (
     <>
@@ -81,7 +82,39 @@ const Modal = () => {
             onChange={(e) => onchangeFunc(e, "director")}
           />
           <input
-            className="h-10 w-full border rounded-md p-2 outline-none mt-3"
+            className="h-10 w-full border rounded-md p-1 outline-none mt-3"
+            type="text"
+            placeholder="IMDB Rating"
+            name="imdbRating"
+            id="imdbRating"
+            onChange={(e) => onchangeFunc(e, "imdbRating")}
+          />
+          <input
+            className="h-10 w-full border rounded-md p-1 outline-none mt-3"
+            type="text"
+            placeholder="Release Date"
+            name="date"
+            id="date"
+            onChange={(e) => onchangeFunc(e, "date")}
+          />
+          <input
+            className="h-10 w-full border rounded-md p-1 outline-none mt-3"
+            type="text"
+            placeholder="Duration"
+            name="duration"
+            id="duration"
+            onChange={(e) => onchangeFunc(e, "duration")}
+          />
+          <input
+            className="h-10 w-full border rounded-md p-1 outline-none mt-3"
+            type="text"
+            placeholder="Trailer Url"
+            name="trailerUrl"
+            id="trailerUrl"
+            onChange={(e) => onchangeFunc(e, "trailerUrl")}
+          />
+          <input
+            className="h-10 w-full border rounded-md p-1 outline-none mt-3"
             type="file"
             placeholder="Image"
             name="url"

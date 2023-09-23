@@ -14,6 +14,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { createProductFunc, searchDataFunc } = productSlice.actions;
+export const { createProductFunc } = productSlice.actions;
 
 export default productSlice.reducer;

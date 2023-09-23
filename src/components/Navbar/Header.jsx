@@ -1,13 +1,15 @@
 import { BiMoviePlay } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { modalFunc } from "../../redux/modalSlice";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   return (
     <div className="flex items-center justify-between p-3 bg-rose-800 text-white">
-      <div>
-        <BiMoviePlay size={24}></BiMoviePlay>
+      <div className="cursor-pointer" onClick={() => navigate("/")}>
+        <BiMoviePlay size={32}></BiMoviePlay>
       </div>
       <div className="text-xl flex gap-5">
         <h3>Sign In</h3>
