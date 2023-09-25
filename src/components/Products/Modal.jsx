@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalFunc } from "../../redux/modalSlice";
 import { useState } from "react";
 import { createProductFunc } from "../../redux/productSlice";
+import axios from "axios";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,20 @@ const Modal = () => {
       setMovieInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
-  const buttonFunc = () => {
-    dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
-    dispatch(modalFunc());
+  // const buttonFunc = () => {
+  //   dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
+  //   dispatch(modalFunc());
+  // };
+
+  const buttonFunc = async () => {
+    try {
+      await axios.post('http://localhost:3000/movies', { ...movieInfo });
+      dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
+      dispatch(modalFunc());
+      console.log(true)
+    } catch (error) {
+      console.error('Error adding product:', error);
+    }
   };
 
   return (

@@ -1,0 +1,86 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "TV",
+      "category": "Category",
+      "date": "02/12/2003",
+      "description": "Description",
+      "director": "Director",
+      "imdbRating": "7.5",
+      "trailerUrl": "www.google.com",
+      "url": "https://www.telegraph.co.uk/content/dam/women/2017/12/08/TELEMMGLPICT000144458965_trans_NvBQzQNjv4Bqoy0UijBRPlBgfQSD9mX1zZxWLfs5mAvkbXYQqrLnBas.jpeg?imwidth=1280"
+    },
+    {
+      "id": 2,
+      "name": "TVVVV",
+      "category": "Category",
+      "date": "02/12/2003",
+      "description": "Description",
+      "director": "Director",
+      "imdbRating": "7.5",
+      "trailerUrl": "www.google.com",
+      "url": "https://inklingcreative.ink/wp-content/uploads/Journal/michigan-flower-1024x1024.jpg"
+    },
+    {
+      "name": "TV",
+      "category": "",
+      "description": "",
+      "url": "",
+      "director": "",
+      "imdbRating": "",
+      "date": "",
+      "duration": "",
+      "trailerUrl": "",
+      "id": 3
+    },
+    {
+      "name": "Samsung s12",
+      "category": "",
+      "description": "",
+      "url": "",
+      "director": "",
+      "imdbRating": "",
+      "date": "",
+      "duration": "",
+      "trailerUrl": "",
+      "id": 4
+    },
+    {
+      "name": "TV",
+      "category": "",
+      "description": "",
+      "url": "",
+      "director": "",
+      "imdbRating": "",
+      "date": "",
+      "duration": "",
+      "trailerUrl": "",
+      "id": 5
+    },
+    {
+      "name": "asd",
+      "category": "",
+      "description": "",
+      "url": "",
+      "director": "",
+      "imdbRating": "",
+      "date": "",
+      "duration": "",
+      "trailerUrl": "",
+      "id": 6
+    },
+    {
+      "name": "cxzcxzcxzcxz",
+      "category": "",
+      "description": "",
+      "url": "",
+      "director": "",
+      "imdbRating": "",
+      "date": "",
+      "duration": "",
+      "trailerUrl": "",
+      "id": 7
+    }
+  ]
+}

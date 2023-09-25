@@ -10,6 +10,7 @@ const productSlice = createSlice({
   reducers: {
     createProductFunc: (state, action) => {
       state.product = [...state.product, action.payload]; //tüm state data'yı döner sonra hepsini üstüne ekler
+      // console.log(state.product);
     },
   },
 });
