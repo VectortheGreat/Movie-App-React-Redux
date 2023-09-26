@@ -1,12 +1,18 @@
 import { IoIosClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { modalFunc } from "../../redux/modalSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createProductFunc } from "../../redux/productSlice";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Modal = () => {
+const Modal = ({ onButtonSubmit }) => {
+  Modal.propTypes = {
+    onButtonSubmit: PropTypes.func.isRequired,
+  };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { product } = useSelector((state) => state.product || []);
   const [movieInfo, setMovieInfo] = useState({
     name: "",
@@ -17,8 +23,33 @@ const Modal = () => {
     imdbRating: "",
     date: "",
     duration: "",
-    trailerUrl: ""
+    trailerUrl: "",
   });
+
+  const location = useLocation();
+  let loc = location?.search.split("=")[1];
+
+  useEffect(() => {
+    if (loc) {
+      const foundProduct = product.find((pr) => pr.id == loc);
+      if (foundProduct) {
+        setMovieInfo(foundProduct);
+      } else {
+        setMovieInfo({
+          name: "",
+          category: "",
+          description: "",
+          url: "",
+          director: "",
+          imdbRating: "",
+          date: "",
+          duration: "",
+          trailerUrl: "",
+        });
+      }
+    }
+  }, [loc]);
+
   const onchangeFunc = (e, type) => {
     if (type == "url") {
       setMovieInfo((prev) => ({
@@ -29,20 +60,21 @@ const Modal = () => {
       setMovieInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
-  // const buttonFunc = () => {
-  //   dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
-  //   dispatch(modalFunc());
-  // };
 
   const buttonFunc = async () => {
     try {
-      await axios.post('http://localhost:3000/movies', { ...movieInfo });
+      await axios.post("http://localhost:3000/movies", { ...movieInfo });
       dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
       dispatch(modalFunc());
-      console.log(true)
+      onButtonSubmit(); // Call the callback function
     } catch (error) {
-      console.error('Error adding product:', error);
+      console.error("Error adding product:", error);
     }
+  };
+
+  const closeModal = () => {
+    dispatch(modalFunc());
+    navigate("/");
   };
 
   return (
@@ -54,7 +86,7 @@ const Modal = () => {
             <IoIosClose
               className="cursor-pointer"
               size={24}
-              onClick={() => dispatch(modalFunc())}
+              onClick={closeModal}
             ></IoIosClose>
           </div>
           <input

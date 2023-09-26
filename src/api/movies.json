@@ -5,7 +5,7 @@
       "name": "TV",
       "category": "Category",
       "date": "02/12/2003",
-      "description": "Description",
+      "description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
       "director": "Director",
       "imdbRating": "7.5",
       "trailerUrl": "www.google.com",
@@ -16,14 +16,14 @@
       "name": "TVVVV",
       "category": "Category",
       "date": "02/12/2003",
-      "description": "Description",
+      "description": "When Earth becomes uninhabitable in the future",
       "director": "Director",
       "imdbRating": "7.5",
       "trailerUrl": "www.google.com",
       "url": "https://inklingcreative.ink/wp-content/uploads/Journal/michigan-flower-1024x1024.jpg"
     },
     {
-      "name": "TV",
+      "name": "vectorthegreat",
       "category": "",
       "description": "",
       "url": "",
@@ -47,18 +47,6 @@
       "id": 4
     },
     {
-      "name": "TV",
-      "category": "",
-      "description": "",
-      "url": "",
-      "director": "",
-      "imdbRating": "",
-      "date": "",
-      "duration": "",
-      "trailerUrl": "",
-      "id": 5
-    },
-    {
       "name": "asd",
       "category": "",
       "description": "",
@@ -68,19 +56,7 @@
       "date": "",
       "duration": "",
       "trailerUrl": "",
-      "id": 6
-    },
-    {
-      "name": "cxzcxzcxzcxz",
-      "category": "",
-      "description": "",
-      "url": "",
-      "director": "",
-      "imdbRating": "",
-      "date": "",
-      "duration": "",
-      "trailerUrl": "",
-      "id": 7
+      "id": 5
     }
   ]
 }
