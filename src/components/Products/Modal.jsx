@@ -2,7 +2,7 @@ import { IoIosClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { modalFunc } from "../../redux/modalSlice";
 import { useEffect, useState } from "react";
-import { createProductFunc } from "../../redux/productSlice";
+import { createProductFunc, updateProductFunc } from "../../redux/productSlice";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -24,6 +24,7 @@ const Modal = ({ onButtonSubmit }) => {
     date: "",
     duration: "",
     trailerUrl: "",
+    id: "",
   });
 
   const location = useLocation();
@@ -45,6 +46,7 @@ const Modal = ({ onButtonSubmit }) => {
           date: "",
           duration: "",
           trailerUrl: "",
+          id: "",
         });
       }
     }
@@ -62,13 +64,25 @@ const Modal = ({ onButtonSubmit }) => {
   };
 
   const buttonFunc = async () => {
-    try {
-      await axios.post("http://localhost:3000/movies", { ...movieInfo });
-      dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
-      dispatch(modalFunc());
-      onButtonSubmit(); // Call the callback function
-    } catch (error) {
-      console.error("Error adding product:", error);
+    if (loc) {
+      try {
+        await axios.put(`http://localhost:3000/movies/${loc}`, {
+          ...movieInfo,
+        });
+        dispatch(updateProductFunc({ ...movieInfo, id: loc }));
+        onButtonSubmit();
+      } catch (error) {
+        console.error("Error adding product:", error);
+      }
+    } else {
+      try {
+        await axios.post("http://localhost:3000/movies", { ...movieInfo });
+        dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
+        dispatch(modalFunc());
+        onButtonSubmit(); // Call the callback function
+      } catch (error) {
+        console.error("Error adding product:", error);
+      }
     }
   };
 

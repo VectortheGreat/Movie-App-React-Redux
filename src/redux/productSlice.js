@@ -9,8 +9,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     createProductFunc: (state, action) => {
-      state.product = [...state.product, action.payload]; //tüm state data'yı döner sonra hepsini üstüne ekler
-      console.log(state.product);
+      state.product = [...state.product, action.payload];
     },
     integrateProductsFromServer: (state, action) => {
       const newData = action.payload;
@@ -23,10 +22,40 @@ const productSlice = createSlice({
         }
       });
     },
+    updateProductFunc: (state, action) => {
+      const updatedProductId = action.payload.id;
+      state.product = state.product.map((product) => {
+        if (product.id == updatedProductId) {
+          console.log("Güncelleme işlemi başarılı!");
+          console.log("Güncellenen Ürün:", action.payload);
+          console.log("Güncellenmiş Durum:", state.product);
+          return {
+            ...product,
+            name: action.payload.name,
+            category: action.payload.category,
+            date: action.payload.date,
+            description: action.payload.description,
+          };
+        } else {
+          console.log(false);
+          return product;
+        }
+      });
+    },
+    deleteProductFunc: (state, action) => {
+      console.log(true);
+      state.data = state.data.filter((dt) => {
+        return dt.id !== action.payload;
+      });
+    },
   },
 });
 
-export const { createProductFunc, integrateProductsFromServer } =
-  productSlice.actions;
+export const {
+  createProductFunc,
+  integrateProductsFromServer,
+  updateProductFunc,
+  deleteProductFunc,
+} = productSlice.actions;
 
 export default productSlice.reducer;
