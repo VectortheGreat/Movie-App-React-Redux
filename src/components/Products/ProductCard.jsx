@@ -45,12 +45,8 @@ const ProductCard = ({ pr }) => {
           <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             {pr.name}
           </div>
-          <span className="font-bold">Category:</span> {pr.category}
-          <div className="mt-2">
-            <div className="text-gray-700">
-              <span className="font-bold">Director:</span> {pr.director}
-            </div>
-          </div>
+
+          <div className="mt-2"></div>
           <div className="mt-2">
             <p className="text-gray-700">
               {showFullDescription

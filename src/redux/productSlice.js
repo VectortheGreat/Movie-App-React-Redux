@@ -26,9 +26,6 @@ const productSlice = createSlice({
       const updatedProductId = action.payload.id;
       state.product = state.product.map((product) => {
         if (product.id == updatedProductId) {
-          console.log("Güncelleme işlemi başarılı!");
-          console.log("Güncellenen Ürün:", action.payload);
-          console.log("Güncellenmiş Durum:", state.product);
           return {
             ...product,
             name: action.payload.name,
@@ -37,15 +34,13 @@ const productSlice = createSlice({
             description: action.payload.description,
           };
         } else {
-          console.log(false);
           return product;
         }
       });
     },
     deleteProductFunc: (state, action) => {
-      console.log(true);
-      state.data = state.data.filter((dt) => {
-        return dt.id !== action.payload;
+      state.product = state.product.filter((product) => {
+        return product.id !== action.payload;
       });
     },
   },

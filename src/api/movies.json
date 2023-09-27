@@ -2,7 +2,7 @@
   "movies": [
     {
       "id": 1,
-      "name": "TV",
+      "name": "Intersaller",
       "category": "Category",
       "date": "02/12/2003",
       "description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "name": "TVVVV",
+      "name": "My Way",
       "category": "Category",
       "date": "02/12/2003",
       "description": "When Earth becomes uninhabitable in the future",
@@ -21,6 +21,26 @@
       "imdbRating": "7.5",
       "trailerUrl": "www.google.com",
       "url": "https://inklingcreative.ink/wp-content/uploads/Journal/michigan-flower-1024x1024.jpg"
+    }
+  ],
+   "users": [
+    {
+      "id": 1,
+      "email": "admin",
+      "password": "123",
+      "role":"admin"
+    },
+    {
+      "id": 2,
+       "email": "mod",
+      "password": "123",
+      "role":"moderator"
+    },
+    {
+      "id": 3,
+       "email": "user",
+      "password": "123",
+      "role":"user"
     }
   ]
 }

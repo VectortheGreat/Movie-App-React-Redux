@@ -5,31 +5,26 @@ import { deleteProductFunc } from "../../redux/productSlice";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const WarningModal = ({ onButtonSubmit }) => {
+const WarningModal = ({ fetchDataFromServer }) => {
   WarningModal.propTypes = {
-    onButtonSubmit: PropTypes.func.isRequired,
+    fetchDataFromServer: PropTypes.func.isRequired,
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   let loc = location?.search.split("=")[1];
-  console.log(loc);
-  console.log(`http://localhost:3000/movies/${loc}`);
   const deleteProduct = async () => {
     try {
-      await axios
-        .delete(`http://localhost:3000/movies/${loc}`)
-        .then((response) => {
-          console.log("Ürün başarıyla silindi.", response);
-        });
+      await axios.delete(`http://localhost:3000/movies/${loc}`);
       dispatch(deleteProductFunc(loc));
-      onButtonSubmit();
+      fetchDataFromServer();
     } catch (error) {
-      console.error("Error adding product:", error);
+      console.error("Error removing product:", error);
     }
     dispatch(warningModalFunc());
     navigate(`/`);
   };
+
   const warningFunc = () => {
     dispatch(warningModalFunc());
     navigate(`/`);

@@ -7,9 +7,9 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Modal = ({ onButtonSubmit }) => {
+const Modal = ({ fetchDataFromServer }) => {
   Modal.propTypes = {
-    onButtonSubmit: PropTypes.func.isRequired,
+    fetchDataFromServer: PropTypes.func.isRequired,
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,7 +69,8 @@ const Modal = ({ onButtonSubmit }) => {
           ...movieInfo,
         });
         dispatch(updateProductFunc({ ...movieInfo, id: loc }));
-        onButtonSubmit();
+        dispatch(modalFunc());
+        fetchDataFromServer();
       } catch (error) {
         console.error("Error adding product:", error);
       }
@@ -78,7 +79,7 @@ const Modal = ({ onButtonSubmit }) => {
         await axios.post("http://localhost:3000/movies", { ...movieInfo });
         dispatch(createProductFunc({ ...movieInfo, id: product.length + 1 }));
         dispatch(modalFunc());
-        onButtonSubmit(); // Call the callback function
+        fetchDataFromServer(); // Call the callback function
       } catch (error) {
         console.error("Error adding product:", error);
       }
