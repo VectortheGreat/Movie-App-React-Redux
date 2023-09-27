@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   modal: false,
+  warningModal: false,
 };
 
 const modalSlice = createSlice({
@@ -11,9 +12,12 @@ const modalSlice = createSlice({
     modalFunc: (state) => {
       state.modal = !state.modal;
     },
+    warningModalFunc: (state) => {
+      state.warningModal = !state.warningModal;
+    },
   },
 });
 
-export const { modalFunc } = modalSlice.actions;
+export const { modalFunc, warningModalFunc } = modalSlice.actions;
 
 export default modalSlice.reducer;

@@ -29,7 +29,6 @@ const Modal = ({ onButtonSubmit }) => {
 
   const location = useLocation();
   let loc = location?.search.split("=")[1];
-
   useEffect(() => {
     if (loc) {
       const foundProduct = product.find((pr) => pr.id == loc);

@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { modalFunc } from "../../redux/modalSlice";
+import { modalFunc, warningModalFunc } from "../../redux/modalSlice";
+import { BsFillTrashFill } from "react-icons/bs";
 const ProductCard = ({ pr }) => {
   ProductCard.propTypes = {
     pr: PropTypes.shape({
@@ -23,6 +24,11 @@ const ProductCard = ({ pr }) => {
     setEditMod(!editMod);
     dispatch(modalFunc());
     navigate(`/?update=${pr?.id}`);
+  };
+
+  const deleteFunc = () => {
+    dispatch(warningModalFunc());
+    navigate(`/?delete=${pr?.id}`);
   };
 
   return (
@@ -59,18 +65,26 @@ const ProductCard = ({ pr }) => {
                 {showFullDescription ? "Gizle" : "Devamını Gör"}
               </button>
             )}
-            <div>
+            <div className="mt-2 space-x-2 flex">
               <button
                 onClick={() => navigate(`detail/${pr?.id}`)}
-                className="bg-rose-800 text-white mr-3 mt-3 p-1 rounded-md"
+                className="bg-rose-800 text-white rounded-md p-2"
               >
                 Details
               </button>
               <button
-                className="bg-rose-800 text-white p-1 rounded-md"
+                className="bg-rose-800 text-white rounded-md p-2"
                 onClick={toggleEditMod}
               >
                 Edit
+              </button>
+              <button
+                className="bg-rose-800 text-white rounded-md p-2 px-2.5"
+                onClick={deleteFunc}
+              >
+                <span>
+                  <BsFillTrashFill></BsFillTrashFill>
+                </span>
               </button>
             </div>
           </div>
