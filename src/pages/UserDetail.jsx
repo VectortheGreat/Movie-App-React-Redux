@@ -3,11 +3,15 @@ import Header from "../components/Navbar/Header";
 import UserProfile from "../components/User/Auth/UserProfile";
 import { useEffect, useState } from "react";
 import { integrateUsersFromServer } from "../redux/userSlice";
+import InvalidPage from "../components/User/Auth/InvalidPage";
+import { useLocation } from "react-router-dom";
 
 const UserDetail = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = useState();
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user || []);
   const fetchUserData = () => {
     const baseURL = "http://localhost:3000/users";
     fetch(baseURL)
@@ -20,18 +24,24 @@ const UserDetail = () => {
         console.error("Fetch error:", error);
       });
   };
-  //console.log(userData);
+  const matchedUserID = user.user.find((dt) => {
+    return dt.id == auth.userID;
+  });
+  const location = useLocation();
+  let loc = location.pathname.split("/")[2];
+  console.log(loc);
 
-  const auth = useSelector((state) => state.auth);
   useEffect(() => {
     fetchUserData();
-    const userID = auth.userID;
-    console.log(userID);
   }, []);
   return (
     <div>
       <Header></Header>
-      <UserProfile></UserProfile>
+      {auth.userID === loc && auth.token ? (
+        <UserProfile matchedUserID={matchedUserID}></UserProfile>
+      ) : (
+        <InvalidPage></InvalidPage>
+      )}
     </div>
   );
 };

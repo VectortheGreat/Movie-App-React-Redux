@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { createLocalToken } from "../../redux/authSlice";
+import { createLocalToken, setUserID } from "../../redux/authSlice";
 
 const Login = () => {
   const { loginSuccessful } = useSelector((state) => state.user);
@@ -45,10 +45,12 @@ const Login = () => {
       });
       if (loginChechk) {
         dispatch(findUserLogin(loginInfo));
-        navigate(`/users/${loginChechk.id}`);
+        // navigate(`/users/${loginChechk.id}`);
+        navigate(`/`);
         const jwtToken = generateJwtToken();
         dispatch(createLocalToken(jwtToken));
-        localStorage.setItem("userID", loginChechk.id);
+        dispatch(setUserID(loginChechk.id));
+        window.location.reload();
         try {
           await axios.get(`http://localhost:3000/users/${loginChechk.id}`, {});
         } catch (error) {
