@@ -7,31 +7,68 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { createLocalToken } from "../../redux/authSlice";
 
 const Login = () => {
   const { loginSuccessful } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
+  console.log(user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+
   const onchangeFunc = (e) => {
     setLoginInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const generateJwtToken = () => {
+    const uniqueID = uuidv4();
+    const jwtToken = uniqueID.replace(/-/g, "");
+    //const expirationTime = new Date().getTime() + 12 * 60 * 60 * 1000; // 12 saat
+    //
+    //console.log("TOKEN DATA: ", tokenData);
+    // localStorage.setItem("jwtToken", JSON.stringify(tokenData));
+    localStorage.setItem("jwtToken", jwtToken);
+    return jwtToken;
   };
   const loginFunc = async () => {
     try {
       await axios.get("http://localhost:3000/users", { ...loginInfo });
-      dispatch(findUserLogin(loginInfo));
-      console.log(loginInfo);
+      const loginChechk = user.user.find((dt) => {
+        return (
+          loginInfo.email === dt.email && loginInfo.password === dt.password
+        );
+      });
+      if (loginChechk) {
+        dispatch(findUserLogin(loginInfo));
+        navigate(`/users/${loginChechk.id}`);
+        const jwtToken = generateJwtToken();
+        dispatch(createLocalToken(jwtToken));
+        localStorage.setItem("userID", loginChechk.id);
+        try {
+          await axios.get(`http://localhost:3000/users/${loginChechk.id}`, {});
+        } catch (error) {
+          console.error("Error adding product:", error);
+        }
+      } else {
+        console.error("Invalid email or password");
+      }
     } catch (error) {
       console.error("Error adding product:", error);
     }
   };
 
+  const toggleLoginModeFunc = () => {
+    dispatch(toggleLoginMode());
+    navigate("/users?signup");
+  };
+
   useEffect(() => {
     if (loginSuccessful) {
-      navigate("/");
       dispatch(toggleLoginSuccessful());
     }
   }, [loginSuccessful, navigate, dispatch]);
@@ -73,7 +110,7 @@ const Login = () => {
           </button>
           <button
             className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-300 transition duration-300"
-            onClick={() => dispatch(toggleLoginMode())}
+            onClick={toggleLoginModeFunc}
           >
             Sign Up
           </button>

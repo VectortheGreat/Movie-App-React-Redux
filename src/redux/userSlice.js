@@ -4,6 +4,7 @@ const initialState = {
   user: [],
   loginMode: true,
   loginSuccessful: false,
+  signupSuccessful: false,
 };
 
 const userSlice = createSlice({
@@ -41,6 +42,26 @@ const userSlice = createSlice({
     toggleLoginSuccessful: (state) => {
       state.loginSuccessful = !state.loginSuccessful;
     },
+    findUserSignUp: (state, action) => {
+      const inputEmail = action.payload.email;
+      const userCheck = state.user.find((dt) => {
+        return inputEmail === dt.email;
+      });
+      if (userCheck) {
+        state.signupSuccessful = false;
+        throw new Error("There is such a registered e-mail!");
+      } else {
+        console.log("There is not such a registered e-mail!");
+        state.signupSuccessful = true;
+      }
+    },
+    createNewAccount: (state, action) => {
+      state.user = [...state.user, action.payload];
+      console.log(state.user);
+    },
+    toggleSignupSuccessful: (state) => {
+      state.signupSuccessful = !state.signupSuccessful;
+    },
   },
 });
 
@@ -49,6 +70,9 @@ export const {
   integrateUsersFromServer,
   findUserLogin,
   toggleLoginSuccessful,
+  findUserSignUp,
+  createNewAccount,
+  toggleSignupSuccessful,
 } = userSlice.actions;
 
 export default userSlice.reducer;

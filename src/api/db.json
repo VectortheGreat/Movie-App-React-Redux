@@ -23,24 +23,24 @@
       "url": "https://inklingcreative.ink/wp-content/uploads/Journal/michigan-flower-1024x1024.jpg"
     }
   ],
-   "users": [
+  "users": [
     {
       "id": 1,
       "email": "admin",
       "password": "123",
-      "role":"admin"
+      "role": "admin"
     },
     {
       "id": 2,
-       "email": "mod",
+      "email": "mod",
       "password": "123",
-      "role":"moderator"
+      "role": "moderator"
     },
     {
       "id": 3,
-       "email": "user",
+      "email": "user",
       "password": "123",
-      "role":"user"
+      "role": "user"
     }
   ]
 }
