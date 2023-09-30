@@ -29,7 +29,6 @@ const UserDetail = () => {
   });
   const location = useLocation();
   let loc = location.pathname.split("/")[2];
-  console.log(loc);
 
   useEffect(() => {
     fetchUserData();

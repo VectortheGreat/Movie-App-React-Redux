@@ -23,13 +23,9 @@ const Products = () => {
         console.error("Fetch error:", error);
       });
   };
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(productData);
 
   return (
     <>

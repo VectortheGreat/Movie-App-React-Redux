@@ -13,7 +13,6 @@ import { createLocalToken, setUserID } from "../../redux/authSlice";
 const Login = () => {
   const { loginSuccessful } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user);
-  console.log(user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({

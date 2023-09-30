@@ -57,7 +57,6 @@ const userSlice = createSlice({
     },
     createNewAccount: (state, action) => {
       state.user = [...state.user, action.payload];
-      console.log(state.user);
     },
     toggleSignupSuccessful: (state) => {
       state.signupSuccessful = !state.signupSuccessful;

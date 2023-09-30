@@ -4,10 +4,6 @@ const UserProfile = ({ matchedUserID }) => {
   UserProfile.propTypes = {
     matchedUserID: PropTypes.object.isRequired,
   };
-  const upgradeUserRole = () => {
-    //* YORULDUM. YAT SABAH UĞRAŞ
-  };
-  console.log(matchedUserID);
   return (
     <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md mt-4">
       <div className="flex justify-center">
@@ -26,15 +22,8 @@ const UserProfile = ({ matchedUserID }) => {
         <p className="text-gray-800">{matchedUserID?.password}</p>
       </div>
       <div className="mt-4">
-        <div className="flex justify-between items-center">
-          <div className="flex space-x-2">
-            <label className="block text-gray-700 font-bold">Role:</label>
-            <p className="text-gray-800">{matchedUserID?.role}</p>
-          </div>
-          <button className="bg-rose-800 text-white rounded-md p-1">
-            Upgrade Role
-          </button>
-        </div>
+        <label className="block text-gray-700 font-bold">Role:</label>
+        <p className="text-gray-800">{matchedUserID?.role}</p>
       </div>
     </div>
   );

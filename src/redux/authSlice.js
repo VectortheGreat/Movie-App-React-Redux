@@ -11,7 +11,6 @@ const authSlice = createSlice({
   reducers: {
     createLocalToken: (state, action) => {
       state.token = action.payload;
-      console.log(state.token);
     },
     signOut: (state) => {
       state.token = null;
@@ -19,7 +18,6 @@ const authSlice = createSlice({
     },
     setUserID: (state, action) => {
       localStorage.setItem("userID", action.payload);
-      console.log(state.userID);
     },
   },
 });
